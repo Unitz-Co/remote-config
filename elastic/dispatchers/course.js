@@ -76,14 +76,13 @@ exports.transformDocument = async ({ payload }, { helpers }) => {
 
 exports.searchQuery = ({ payload }, { helpers }) => {
   return {
-    size: 8,
     body: {
       suggest: {
         items: {
           prefix: `${helpers._.get(payload, 'search', '')}`,
           completion: {
             skip_duplicates: true,
-            size: 6,
+            size: 12,
             field: 'category.completion',
           },
         },
