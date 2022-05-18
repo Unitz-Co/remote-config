@@ -24,7 +24,7 @@ exports.indices = () => {
           course_vi_analyzer: {
             type: 'vi_analyzer',
             keep_punctuation: true,
-            stopwords: ['rất', 'những'],
+            // stopwords: ['rất', 'những'],
           },
           // vn_stop_analyzer: {
           //   type: 'custom',
