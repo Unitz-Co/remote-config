@@ -18,6 +18,28 @@ exports.getQuery = () => `
 
 exports.indices = () => {
   return {
+    settings: {
+      analysis: {
+        analyzer: {
+          course_vi_analyzer: {
+            type: 'vi_analyzer',
+            keep_punctuation: true,
+            stopwords: ['rất', 'những'],
+          },
+          // vn_stop_analyzer: {
+          //   type: 'custom',
+          //   tokenizer: 'standard',
+          //   filter: ['lowercase', 'english_stop'],
+          // },
+        },
+        // filter: {
+        //   english_stop: {
+        //     type: 'stop',
+        //     stopwords: '_english_',
+        //   },
+        // },
+      },
+    },
     mappings: {
       properties: {
         id: {
@@ -32,6 +54,7 @@ exports.indices = () => {
             },
             completion: {
               type: 'completion',
+              analyzer: 'course_vi_analyzer',
             },
             keyword: {
               type: 'keyword',
@@ -46,6 +69,7 @@ exports.indices = () => {
             },
             completion: {
               type: 'completion',
+              analyzer: 'course_vi_analyzer',
             },
             keyword: {
               type: 'keyword',
