@@ -88,3 +88,10 @@ exports.searchQuery = ({ payload }, { helpers }) => {
     },
   };
 };
+
+exports.searchParserIds = ({ payload }, { helpers }) => {
+  const { _, flattenGet } = helpers;
+  const _res = _.get(payload, 'body');
+  const values = flattenGet(_res, 'suggest.items.options');
+  return _.map(values, (val) => _.get(val, '_source.id'));
+};
