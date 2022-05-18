@@ -1,3 +1,21 @@
+exports.getQuery = () => `
+  query($where: course_bool_exp) {
+    course(where: $where) {
+      id
+      name
+      categories {
+        category {
+          id
+          display_name
+          display_name_en_US
+          display_name_vi_VN
+          slug
+        }
+      }
+    }
+  }
+`;
+
 exports.indices = () => {
   return {
     mappings: {
