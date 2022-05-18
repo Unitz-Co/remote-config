@@ -57,7 +57,7 @@ exports.indices = () => {
   };
 };
 
-exports.transformDocument = async ({ payload }, { ctxData, utils, helpers }) => {
+exports.transformDocument = async ({ payload }, { helpers }) => {
   return {
     id: payload.id,
     name: payload.name,
@@ -76,13 +76,16 @@ exports.transformDocument = async ({ payload }, { ctxData, utils, helpers }) => 
 
 exports.searchQuery = ({ payload }, { helpers }) => {
   return {
-    suggest: {
-      items: {
-        prefix: `${helpers._.get(payload, 'search', '')}`,
-        completion: {
-          skip_duplicates: true,
-          size: 6,
-          field: 'category.completion',
+    size: 8,
+    body: {
+      suggest: {
+        items: {
+          prefix: `${helpers._.get(payload, 'search', '')}`,
+          completion: {
+            skip_duplicates: true,
+            size: 6,
+            field: 'category.completion',
+          },
         },
       },
     },
