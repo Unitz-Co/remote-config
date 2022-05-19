@@ -25,7 +25,7 @@ exports.indices = () => {
             // type: 'vi_analyzer',
             // keep_punctuation: true,
             // stopwords: ['rất', 'những'],
-            type: 'custom',
+            // type: 'custom',
             tokenizer: 'standard',
             filter: ['preserve_folding', 'lowercase'],
           },
