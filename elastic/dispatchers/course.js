@@ -95,6 +95,7 @@ exports.transformDocument = async ({ payload }, { helpers }) => {
     name_completion: payload.name,
     category: (() => {
       const names = [
+        payload.name,
         ...helpers.flattenGet(payload, 'categories.category.display_name_en_US'),
         ...helpers.flattenGet(payload, 'categories.category.display_name_vi_VN'),
       ];
