@@ -99,7 +99,18 @@ exports.transformDocument = async ({ payload }, { helpers }) => {
         ...helpers.flattenGet(payload, 'categories.category.display_name_vi_VN'),
       ];
       const rtn = names.flatMap((val) => {
-        return [val, `learn ${val} online`, `hoc ${val} online`, `khoa ${val} online`, `${val} online`];
+        return [
+          val,
+          `study ${val}`,
+          `study ${val} online`,
+          `learn ${val}`,
+          `learn ${val} online`,
+          `hoc ${val}`,
+          `hoc ${val} online`,
+          `khoa ${val}`,
+          `khoa ${val} online`,
+          `${val} online`,
+        ];
       });
       return rtn;
     })(),
