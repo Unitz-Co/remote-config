@@ -106,10 +106,10 @@ exports.transformDocument = async ({ payload }, { helpers }) => {
           `study ${val} online`,
           `learn ${val}`,
           `learn ${val} online`,
-          `hoc ${val}`,
-          `hoc ${val} online`,
-          `khoa ${val}`,
-          `khoa ${val} online`,
+          `học ${val}`,
+          `học ${val} online`,
+          `khoá ${val}`,
+          `khoá ${val} online`,
           `${val} online`,
         ];
       });
