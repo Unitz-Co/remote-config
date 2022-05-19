@@ -40,6 +40,7 @@ exports.indices = () => {
           fields: {
             search_as_you_type: {
               type: 'search_as_you_type',
+              analyzer: 'course_vi_analyzer',
               max_shingle_size: 4,
             },
             completion: {
@@ -57,6 +58,8 @@ exports.indices = () => {
           fields: {
             search_as_you_type: {
               type: 'search_as_you_type',
+              analyzer: 'course_vi_analyzer',
+              max_shingle_size: 4,
             },
             completion: {
               type: 'completion',
