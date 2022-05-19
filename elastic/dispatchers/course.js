@@ -26,18 +26,7 @@ exports.indices = () => {
             keep_punctuation: true,
             // stopwords: ['rất', 'những'],
           },
-          // vn_stop_analyzer: {
-          //   type: 'custom',
-          //   tokenizer: 'standard',
-          //   filter: ['lowercase', 'english_stop'],
-          // },
         },
-        // filter: {
-        //   english_stop: {
-        //     type: 'stop',
-        //     stopwords: '_english_',
-        //   },
-        // },
       },
     },
     mappings: {
@@ -47,6 +36,7 @@ exports.indices = () => {
         },
         name: {
           type: 'text',
+          analyzer: 'course_vi_analyzer',
           fields: {
             search_as_you_type: {
               type: 'search_as_you_type',
@@ -63,6 +53,7 @@ exports.indices = () => {
         },
         category: {
           type: 'text',
+          analyzer: 'course_vi_analyzer',
           fields: {
             search_as_you_type: {
               type: 'search_as_you_type',
