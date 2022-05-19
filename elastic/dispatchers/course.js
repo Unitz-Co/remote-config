@@ -34,6 +34,10 @@ exports.indices = () => {
         id: {
           type: 'keyword',
         },
+        name_completion: {
+          type: 'completion',
+          analyzer: 'course_vi_analyzer',
+        },
         name: {
           type: 'text',
           analyzer: 'course_vi_analyzer',
@@ -79,6 +83,7 @@ exports.transformDocument = async ({ payload }, { helpers }) => {
   return {
     id: payload.id,
     name: payload.name,
+    name_completion: payload.name,
     category: (() => {
       const names = [
         ...helpers.flattenGet(payload, 'categories.category.display_name_en_US'),
