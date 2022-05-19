@@ -23,16 +23,17 @@ exports.indices = () => {
         analyzer: {
           course_vi_analyzer: {
             // type: 'vi_analyzer',
-            keep_punctuation: true,
+            // keep_punctuation: true,
             // stopwords: ['rất', 'những'],
+            type: 'custom',
             tokenizer: 'standard',
-            filter: [
-              {
-                type: 'asciifolding',
-                preserve_original: true,
-              },
-              'lowercase',
-            ],
+            filter: ['preserve_folding', 'lowercase'],
+          },
+        },
+        filter: {
+          preserve_folding: {
+            type: 'asciifolding',
+            preserve_original: true,
           },
         },
       },
