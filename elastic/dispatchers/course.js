@@ -22,9 +22,17 @@ exports.indices = () => {
       analysis: {
         analyzer: {
           course_vi_analyzer: {
-            type: 'vi_analyzer',
+            // type: 'vi_analyzer',
             keep_punctuation: true,
             // stopwords: ['rất', 'những'],
+            tokenizer: 'standard',
+            filter: [
+              {
+                type: 'asciifolding',
+                preserve_original: true,
+              },
+              'lowercase',
+            ],
           },
         },
       },
