@@ -43,10 +43,6 @@ exports.indices = () => {
         id: {
           type: 'keyword',
         },
-        name_completion: {
-          type: 'completion',
-          analyzer: 'course_vi_analyzer',
-        },
         name: {
           type: 'text',
           analyzer: 'course_vi_analyzer',
@@ -68,20 +64,10 @@ exports.indices = () => {
         category: {
           type: 'text',
           analyzer: 'course_vi_analyzer',
-          fields: {
-            search_as_you_type: {
-              type: 'search_as_you_type',
-              analyzer: 'course_vi_analyzer',
-              max_shingle_size: 4,
-            },
-            completion: {
-              type: 'completion',
-              analyzer: 'course_vi_analyzer',
-            },
-            keyword: {
-              type: 'keyword',
-            },
-          },
+        },
+        suggest_completion: {
+          type: 'completion',
+          analyzer: 'course_vi_analyzer',
         },
       },
     },
@@ -89,11 +75,35 @@ exports.indices = () => {
 };
 
 exports.transformDocument = async ({ payload }, { helpers }) => {
+  const { _ } = helpers;
+  const prefixWordFree = (val, term) => {
+    const curPrefix = _.deburr(_.first(val.split(' ')));
+    if (curPrefix !== _.deburr(term)) {
+      return `${term} ${val}`;
+    }
+    return val;
+  };
+  const suffixWordFree = (val, term) => {
+    const curPrefix = _.deburr(_.first(val.split(' ')));
+    if (curPrefix !== _.deburr(term)) {
+      return `${val} ${term}`;
+    }
+    return val;
+  };
   return {
     id: payload.id,
     name: payload.name,
-    name_completion: payload.name,
     category: (() => {
+      const names = [
+        ...helpers.flattenGet(payload, 'categories.category.display_name_en_US'),
+        ...helpers.flattenGet(payload, 'categories.category.display_name_vi_VN'),
+      ];
+      const rtn = names.flatMap((val) => {
+        return [val];
+      });
+      return rtn;
+    })(),
+    suggest_completion: (() => {
       const names = [
         payload.name,
         ...helpers.flattenGet(payload, 'categories.category.display_name_en_US'),
@@ -102,15 +112,19 @@ exports.transformDocument = async ({ payload }, { helpers }) => {
       const rtn = names.flatMap((val) => {
         return [
           val,
-          `study ${val}`,
-          `study ${val} online`,
-          `learn ${val}`,
-          `learn ${val} online`,
-          `học ${val}`,
-          `học ${val} online`,
-          `khoá ${val}`,
-          `khoá ${val} online`,
-          `${val} online`,
+          suffixWordFree(val, 'online'),
+
+          prefixWordFree(val, 'study'),
+          suffixWordFree(prefixWordFree(val, 'study'), 'online'),
+
+          prefixWordFree(val, 'learn'),
+          suffixWordFree(prefixWordFree(val, 'learn'), 'online'),
+
+          prefixWordFree(val, 'học'),
+          suffixWordFree(prefixWordFree(val, 'học'), 'online'),
+
+          prefixWordFree(val, 'khoá'),
+          suffixWordFree(prefixWordFree(val, 'khoá'), 'online'),
         ];
       });
       return rtn;
@@ -127,7 +141,7 @@ exports.searchQuery = ({ payload }, { helpers }) => {
           completion: {
             skip_duplicates: true,
             size: 12,
-            field: 'category.completion',
+            field: 'suggest_completion',
           },
         },
       },
