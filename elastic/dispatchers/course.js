@@ -26,7 +26,7 @@ exports.indices = () => {
             // keep_punctuation: true,
             // stopwords: ['rất', 'những'],
             // type: 'custom',
-            tokenizer: 'standard',
+            tokenizer: 'vi_tokenizer',
             filter: ['preserve_folding', 'lowercase'],
           },
         },
