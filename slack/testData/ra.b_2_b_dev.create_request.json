@@ -1,0 +1,44 @@
+{
+  "item": {
+    "is_approved": false,
+    "created_by": "YUgdOvgNaTPOBfBJSs3YZN7rngS2",
+    "name": "many",
+    "approved_by": null,
+    "updated_at": null,
+    "created_at": null,
+    "id": "d94b77b3-c8ca-49ec-b6f7-e5e6870287ba",
+    "account_id": "84bddc49-a50b-434a-bcb2-ac42eec331fa",
+    "updated_by": "YUgdOvgNaTPOBfBJSs3YZN7rngS2",
+    "approved_at": null
+  },
+  "table": "b2b.dev",
+  "status": "request",
+  "is_approved": false,
+  "approved_by": null,
+  "id": "4b1a1a81-2306-4551-a45a-414482891441",
+  "type": "ra.b_2_b_dev.create_request",
+  "target_table": "b2b.dev",
+  "notes": null,
+  "approved_at": null,
+  "ar": {
+    "id": "4b1a1a81-2306-4551-a45a-414482891441"
+  },
+  "user": {
+    "id": "YUgdOvgNaTPOBfBJSs3YZN7rngS2",
+    "profile": {
+      "display_name": "Hung Tran 11"
+    }
+  },
+  "account": {
+    "id": "84bddc49-a50b-434a-bcb2-ac42eec331fa",
+    "slug": "unitz-cat-2",
+    "profile": {
+      "display_name": "Unitz-Cat",
+      "avatar_url": "https://firebasestorage.googleapis.com/v0/b/unitz-app.appspot.com/o/YUgdOvgNaTPOBfBJSs3YZN7rngS2%2FCourseAttachments%2F1668661004472logounitzok2.jpeg?alt=media&token=ca030567-85fe-404c-8b28-fd523ca8b11e"
+    }
+  },
+  "route": {
+    "user_url": "https://unitz.page.link/?link=https://zoom.unitz.app/profile&apn=app.unitz.biz&isi=1569969242&ibi=app.unitz.biz",
+    "account_url": "https://unitz.page.link/?link=https://zoom.unitz.app/unitz-cat-2&apn=app.unitz.biz&isi=1569969242&ibi=app.unitz.biz"
+  }
+}
